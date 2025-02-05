@@ -42,25 +42,28 @@ public class pruebaVehiculo {
             case 3:
                 System.out.println("Adios...");
                 break;
-            default: System.out.println("Opcion no permitida. Seleccione la opcion");
-                    muestraMenu();
-                    menuSwitch(sc.nextInt());
+            default:
+                System.out.println("Opcion no permitida. Seleccione la opcion");
+                muestraMenu();
+                menuSwitch(sc.nextInt());
         }
     }
 
     static void agregaVehiculo() {
-        System.out.println("Quiere crear un coche(1) o un camion(2): ");
-        System.out.println("Eliga 1 o 2");
+        System.out.println("Quiere crear un coche(1), un camion(2), o una moto(3): ");
+        System.out.println("Eliga 1, 2 o 3");
         int opcion = sc.nextInt();
-        while (opcion < 1 || opcion > 2) {
+        while (opcion < 1 || opcion > 3) {
             System.out.println("Opcion no valida, introduzca la opcion correcta");
             opcion = sc.nextInt();
         }
         if (opcion == 1) {
             System.out.println("Has elegido crear un coche...");
             creaCoche();
-        } else {
+        } else if (opcion == 2) {
             creaCamion();
+        } else {
+            creaMoto();
         }
 
     }
@@ -70,6 +73,16 @@ public class pruebaVehiculo {
             System.out.println("No se pueden anadir mas vehiculos.");
         } else {
             sc.nextLine();
+            System.out.println("Datos del propietario: ");
+            System.out.print("Introduzca el nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Introduzca el apellido: ");
+            String apellido = sc.nextLine();
+            System.out.print("Introduzca el DNI: ");
+            String dni = sc.nextLine();
+            System.out.print("Introduzca la direccion del propietario: ");
+            String direccion = sc.nextLine();
+            Propietario propietario = new Propietario(nombre, apellido, dni, direccion);
             System.out.print("Introduzca la marca del coche: ");
             String marca = sc.nextLine();
             System.out.print("Introduzca el modelo del coche: ");
@@ -78,7 +91,7 @@ public class pruebaVehiculo {
             int anyo = sc.nextInt();
             System.out.print("Cuantas puertas tiene el coche: ");
             int puertas = sc.nextInt();
-            Auto coche = new Auto(marca, modelo, anyo, puertas);
+            Auto coche = new Auto(marca, modelo, anyo, puertas, propietario);
             arrayVehiculos[contArray] = coche;
             contArray++;
         }
@@ -89,6 +102,17 @@ public class pruebaVehiculo {
             System.out.println("No se pueden anadir mas vehiculos");
         } else {
             sc.nextLine(); //purgo el scanner
+            System.out.println("Datos del propietario: ");
+            System.out.print("Introduzca el nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Introduzca el apellido: ");
+            String apellido = sc.nextLine();
+            System.out.print("Introduzca el DNI: ");
+            String dni = sc.nextLine();
+            System.out.print("Introduzca la direccion del propietario: ");
+            String direccion = sc.nextLine();
+            Propietario propietario = new Propietario(nombre, apellido, dni, direccion);
+
             System.out.print("Introduzca la marca del camion: ");
             String marca = sc.nextLine();
             System.out.print("Introduzca el modelo del camion: ");
@@ -97,9 +121,39 @@ public class pruebaVehiculo {
             int anyo = sc.nextInt();
             System.out.print("Introduzca el peso (En Toneladas) que puede cargar el camion: ");
             int toneladas = sc.nextInt();
-            Camion camion = new Camion(marca, modelo, anyo, toneladas);
+            Camion camion = new Camion(marca, modelo, anyo, toneladas, propietario);
             arrayVehiculos[contArray] = camion;
             contArray++;
         }
     }
+
+    static void creaMoto() {
+        if (contArray >= 5) {
+            System.out.println("No se pueden anadir mas vehiculos.");
+        } else {
+            sc.nextLine();
+            System.out.print("Introduzca el nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Introduzca el apellido: ");
+            String apellido = sc.nextLine();
+            System.out.print("Introduzca el DNI: ");
+            String dni = sc.nextLine();
+            System.out.print("Introduzca la direccion del propietario: ");
+            String direccion = sc.nextLine();
+            Propietario propietario = new Propietario(nombre, apellido, dni, direccion);
+            
+            System.out.print("Introduzca la marca de la moto: ");
+            String marca = sc.nextLine();
+            System.out.print("Introduzca el modelo de la moto: ");
+            String modelo = sc.nextLine();
+            System.out.print("Introduzca el anyo de creacion de la moto: ");
+            int anyo = sc.nextInt();
+            System.out.print("Introduzca la cilindrada del amoto: ");
+            int cilindrada = sc.nextInt();
+            Moto moto = new Moto(marca,modelo,anyo,cilindrada,propietario);
+            arrayVehiculos[contArray] = moto;
+            contArray++;
+        }
+    }
+
 }

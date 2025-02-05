@@ -6,8 +6,8 @@ package gestionvehiculos;
 public class Camion extends Vehiculo {
     private int capacidadCarga;
 
-    public Camion(String marca, String modelo, int year, int capacidadCarga) {
-        super(marca, modelo, year);
+    public Camion(String marca, String modelo, int year, int capacidadCarga, Propietario propietario) {
+        super(marca, modelo, year, propietario);
         this.capacidadCarga = capacidadCarga;
     }
     
