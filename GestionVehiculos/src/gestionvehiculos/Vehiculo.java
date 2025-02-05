@@ -14,8 +14,5 @@ public abstract class Vehiculo {
 
     public abstract void calcularImpuesto();
 
-    @Override
-    public String toString() {
-        return "Vehiculo{" + "marca=" + marca + ", modelo=" + modelo + ", year=" + year + '}';
-    }
+    
 }
