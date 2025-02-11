@@ -25,28 +25,25 @@ public class pruebaVehiculo {
     }
 
     static void menuSwitch(int opcion) {
-        switch (opcion) {
-            case 1:
-                agregaVehiculo();
-                muestraMenu();
-                menuSwitch(sc.nextInt());
-                break;
-            case 2:
-                for (int i = 0; i < contArray; i++) {
-                    System.out.println(arrayVehiculos[i]);
-                    arrayVehiculos[i].calcularImpuesto();
+        while (opcion != 6) {
+            
+            switch (opcion) {
+                case 1 -> agregaVehiculo();
+                case 2 -> {
+                    for (int i = 0; i < contArray; i++) {
+                        System.out.println(arrayVehiculos[i]);
+                        arrayVehiculos[i].calcularImpuesto();
+                    }
                 }
-                muestraMenu();
-                menuSwitch(sc.nextInt());
-                break;
-            case 3:
-                System.out.println("Adios...");
-                break;
-            default:
-                System.out.println("Opcion no permitida. Seleccione la opcion");
-                muestraMenu();
-                menuSwitch(sc.nextInt());
+                case 3 -> System.out.println("Adios...");   
+                default -> System.out.println("Opcion no permitida. Seleccione la opcion");
+
+            }
+            muestraMenu();
+            opcion = sc.nextInt();
+          
         }
+        System.out.println("Adios...");
     }
 
     static void agregaVehiculo() {
@@ -141,7 +138,7 @@ public class pruebaVehiculo {
             System.out.print("Introduzca la direccion del propietario: ");
             String direccion = sc.nextLine();
             Propietario propietario = new Propietario(nombre, apellido, dni, direccion);
-            
+
             System.out.print("Introduzca la marca de la moto: ");
             String marca = sc.nextLine();
             System.out.print("Introduzca el modelo de la moto: ");
@@ -150,7 +147,7 @@ public class pruebaVehiculo {
             int anyo = sc.nextInt();
             System.out.print("Introduzca la cilindrada del amoto: ");
             int cilindrada = sc.nextInt();
-            Moto moto = new Moto(marca,modelo,anyo,cilindrada,propietario);
+            Moto moto = new Moto(marca, modelo, anyo, cilindrada, propietario);
             arrayVehiculos[contArray] = moto;
             contArray++;
         }
